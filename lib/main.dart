@@ -1,4 +1,5 @@
 import 'package:auction_app/screens/auctionGallery.dart';
+import 'package:auction_app/screens/home_page.dart';
 import 'package:auction_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
-        AuctionGallery.id: (context) => AuctionGallery(),
+        HomePage.id: (context) => HomePage(),
       },
     );
   }

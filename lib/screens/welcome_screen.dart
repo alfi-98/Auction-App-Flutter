@@ -1,6 +1,8 @@
 import 'package:auction_app/screens/auctionGallery.dart';
+import 'package:auction_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -13,6 +15,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //GoogleSignInAccount? _currentUser;
     GoogleSignInAccount? user = _googleSignIn.currentUser;
 
     return Scaffold(
@@ -65,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       : () async {
                           await _googleSignIn.signIn();
                           setState(() {});
-                          Navigator.pushNamed(context, AuctionGallery.id);
+                          Navigator.pushNamed(context, HomePage.id);
                         },
                   minWidth: 200.0,
                   height: 42.0,
