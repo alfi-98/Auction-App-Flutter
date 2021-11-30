@@ -20,7 +20,7 @@ class _SideBarState extends State<SideBar> {
     //GoogleSignInAccount? user = _googleSignIn.currentUser;
 
     return Container(
-      color: Colors.black,
+      color: Color(0xFF36454F),
       child: Padding(
         padding: EdgeInsets.only(top: 50, left: 40, bottom: 70),
         child: Column(
@@ -37,7 +37,7 @@ class _SideBarState extends State<SideBar> {
                       Icons.person,
                       color: Colors.white,
                     ),
-                    radius: 80,
+                    radius: 40,
                   ),
                   SizedBox(
                     height: 10,
@@ -87,8 +87,8 @@ class _SideBarState extends State<SideBar> {
                     height: 50,
                   ),
                   OptionBar(
-                      icon: Icons.account_circle_rounded,
-                      text: "My post items",
+                      icon: Icons.article_outlined,
+                      text: "Profile",
                       onTap: () {},
                       sizeFont: 22),
                   SizedBox(

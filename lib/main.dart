@@ -1,5 +1,7 @@
 import 'package:auction_app/screens/auctionGallery.dart';
+import 'package:auction_app/screens/create_item.dart';
 import 'package:auction_app/screens/home_page.dart';
+import 'package:auction_app/screens/my_posts.dart';
 import 'package:auction_app/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         HomePage.id: (context) => HomePage(),
+        CreateItem.id: (context) => CreateItem(),
+        MyPosts.id: (context) => MyPosts(),
       },
     );
   }
