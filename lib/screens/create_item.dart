@@ -1,5 +1,6 @@
 import 'package:auction_app/main.dart';
 import 'package:auction_app/screens/auctionGallery.dart';
+import 'package:auction_app/screens/dashBoard.dart';
 import 'package:auction_app/screens/home_page.dart';
 import 'package:auction_app/screens/my_posts.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,8 +39,10 @@ class _CreateItemState extends State<CreateItem> {
 
           if (isLastStep) {
             setState(() {
-              AlertDialog();
+              isCompleted = true;
             });
+
+            AlertDialog();
 
             // CupertinoAlertDialog(
             //   title: Text('Confirm Posting?'),
@@ -112,9 +115,9 @@ class _CreateItemState extends State<CreateItem> {
                 color: Colors.white),
             IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, MyPosts.id);
+                  Navigator.pushNamed(context, DashBoard.id);
                 },
-                icon: Icon(Icons.account_circle_rounded),
+                icon: Icon(Icons.dashboard),
                 color: Colors.white),
           ]),
         ),

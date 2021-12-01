@@ -1,4 +1,9 @@
 import 'package:auction_app/options_sidebar.dart';
+import 'package:auction_app/screens/auctionGallery.dart';
+import 'package:auction_app/screens/dashBoard.dart';
+import 'package:auction_app/screens/home_page.dart';
+import 'package:auction_app/screens/myBids.dart';
+import 'package:auction_app/screens/my_posts.dart';
 import 'package:auction_app/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +70,9 @@ class _SideBarState extends State<SideBar> {
                   OptionBar(
                       icon: Icons.dashboard,
                       text: "dashboard",
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, DashBoard.id);
+                      },
                       sizeFont: 22),
                   SizedBox(
                     height: 50,
@@ -73,23 +80,29 @@ class _SideBarState extends State<SideBar> {
                   OptionBar(
                       icon: Icons.home,
                       text: "Gallery",
-                      onTap: () {},
-                      sizeFont: 22),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  OptionBar(
-                      icon: Icons.account_circle_rounded,
-                      text: "My post items",
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, HomePage.id);
+                      },
                       sizeFont: 22),
                   SizedBox(
                     height: 50,
                   ),
                   OptionBar(
                       icon: Icons.article_outlined,
-                      text: "Profile",
-                      onTap: () {},
+                      text: "My posted items",
+                      onTap: () {
+                        Navigator.pushNamed(context, MyPosts.id);
+                      },
+                      sizeFont: 22),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  OptionBar(
+                      icon: Icons.monetization_on_outlined,
+                      text: "My Bids",
+                      onTap: () {
+                        Navigator.pushNamed(context, MyBids.id);
+                      },
                       sizeFont: 22),
                   SizedBox(
                     height: 200,

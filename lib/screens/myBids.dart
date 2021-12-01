@@ -3,15 +3,15 @@ import 'package:auction_app/screens/dashBoard.dart';
 import 'package:auction_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
-class MyPosts extends StatefulWidget {
-  static String id = 'my_posts';
-  const MyPosts({Key? key}) : super(key: key);
+class MyBids extends StatefulWidget {
+  static String id = 'my_bids';
+  const MyBids({Key? key}) : super(key: key);
 
   @override
-  _MyPostsState createState() => _MyPostsState();
+  _MyBids createState() => _MyBids();
 }
 
-class _MyPostsState extends State<MyPosts> {
+class _MyBids extends State<MyBids> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
