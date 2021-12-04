@@ -1,14 +1,11 @@
+import 'package:auction_app/fetcPosts.dart';
 import 'package:auction_app/itemCard.dart';
-import 'package:auction_app/screens/auction_page.dart';
 import 'package:auction_app/screens/create_item.dart';
 import 'package:auction_app/screens/dashBoard.dart';
 import 'package:auction_app/screens/home_page.dart';
-import 'package:auction_app/screens/my_posts.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import 'package:flutter/rendering.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class AuctionGallery extends StatefulWidget {
   @override
@@ -80,12 +77,8 @@ class _AuctionGallery extends State<AuctionGallery> {
                 SizedBox(
                   height: 60,
                 ),
+                //FetchPosts(),
                 ItemCard(),
-                ItemCard(),
-                ItemCard(),
-                ItemCard(),
-                ItemCard(),
-                ItemCard()
               ],
             ),
           ),

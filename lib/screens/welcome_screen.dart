@@ -1,24 +1,27 @@
-import 'package:auction_app/screens/auctionGallery.dart';
+import 'dart:math';
+
+import 'package:auction_app/Constants/firebase_constants.dart';
+import 'package:auction_app/Controllers/auth_controller.dart';
 import 'package:auction_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
-
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
+  late String name;
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    //GoogleSignInAccount? _currentUser;
-    GoogleSignInAccount? user = _googleSignIn.currentUser;
-
     return Scaffold(
       backgroundColor: Color(0xFF28282B),
       body: Padding(
@@ -57,20 +60,104 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             SizedBox(
               height: 24.0,
             ),
+            TextField(
+              onChanged: (value) {
+                name = value;
+              },
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: 'Enter your Name',
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            TextField(
+              onChanged: (value) {
+                email = value;
+              },
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: 'Enter your email',
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            TextField(
+              onChanged: (value) {
+                password = value;
+              },
+              obscureText: true,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: 'Enter your password',
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 10.0,
+                elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: user != null
-                      ? null
-                      : () async {
-                          await _googleSignIn.signIn();
-                          setState(() {});
-                          Navigator.pushNamed(context, HomePage.id);
-                        },
+                  onPressed: () async {
+                    try {
+                      final newUser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
+                      User? user = newUser.user;
+
+                      if (newUser != null) {
+                        user!.updateDisplayName(name);
+                        Navigator.pushNamed(context, HomePage.id);
+                      }
+
+                      print(email);
+                      print(password);
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
@@ -80,6 +167,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 30),
           ],
         ),
       ),

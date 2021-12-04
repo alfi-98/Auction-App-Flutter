@@ -1,10 +1,12 @@
-import 'package:auction_app/main.dart';
-import 'package:auction_app/screens/auctionGallery.dart';
 import 'package:auction_app/screens/dashBoard.dart';
 import 'package:auction_app/screens/home_page.dart';
-import 'package:auction_app/screens/my_posts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snack.dart';
 
 class CreateItem extends StatefulWidget {
   static String id = 'create_item';
@@ -16,12 +18,33 @@ class CreateItem extends StatefulWidget {
 
 class _CreateItemState extends State<CreateItem> {
   int currentStep = 0;
-  final productName = TextEditingController();
-  final productDes = TextEditingController();
-  final productPhoto = TextEditingController();
-  final minBidPrice = TextEditingController();
-  final endTime = TextEditingController();
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+  late User loggedInUser;
+
+  late String productName;
+  late String productDes;
+  late String productPhoto;
+  late String minBidPrice;
+  late String endTime;
   bool isCompleted = false;
+
+  void getCurrentUser() async {
+    try {
+      final user = _auth.currentUser!;
+      loggedInUser = user;
+      _firestore.collection('posts').add({
+        'productName': productName,
+        'productDescription': productDes,
+        'productPhoto': productPhoto,
+        'minBid': minBidPrice,
+        'userName': loggedInUser.displayName
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,34 +62,18 @@ class _CreateItemState extends State<CreateItem> {
 
           if (isLastStep) {
             setState(() {
-              isCompleted = true;
+              getCurrentUser();
             });
 
-            AlertDialog();
-
-            // CupertinoAlertDialog(
-            //   title: Text('Confirm Posting?'),
-            //   actions: <CupertinoDialogAction>[
-            //     CupertinoDialogAction(
-            //       child: const Text('No'),
-            //       onPressed: () {
-            //         Navigator.pop(context);
-            //       },
-            //     ),
-            //     CupertinoDialogAction(
-            //       child: const Text('Yes'),
-            //       isDestructiveAction: true,
-            //       onPressed: () {
-            //         // Do something destructive.
-            //       },
-            //     )
-            //   ],
-            // );
             Navigator.pushNamed(context, HomePage.id);
             print('Completed');
 
             // You can connect here with FireBase
-
+            Get.snackbar(
+              "Item Posted",
+              "You Have Successfully Added an Item for Auction",
+              snackPosition: SnackPosition.TOP,
+            );
           } else {
             setState(() => currentStep += 1);
           }
@@ -134,11 +141,15 @@ class _CreateItemState extends State<CreateItem> {
           content: Column(
             children: <Widget>[
               TextFormField(
-                controller: productName,
+                onChanged: (value) {
+                  productName = value;
+                },
                 decoration: InputDecoration(labelText: 'Product Name'),
               ),
               TextFormField(
-                controller: productDes,
+                onChanged: (value) {
+                  productDes = value;
+                },
                 decoration: InputDecoration(labelText: 'Product Description'),
               )
             ],
@@ -151,7 +162,9 @@ class _CreateItemState extends State<CreateItem> {
           content: Column(
             children: <Widget>[
               TextFormField(
-                controller: productPhoto,
+                onChanged: (value) {
+                  productPhoto = value;
+                },
                 decoration: InputDecoration(labelText: 'Product Photo'),
               ),
             ],
@@ -165,11 +178,15 @@ class _CreateItemState extends State<CreateItem> {
           content: Column(
             children: <Widget>[
               TextFormField(
-                controller: minBidPrice,
+                onChanged: (value) {
+                  minBidPrice = value;
+                },
                 decoration: InputDecoration(labelText: ' Minimum Bid Price'),
               ),
               TextFormField(
-                controller: endTime,
+                onChanged: (value) {
+                  endTime = value;
+                },
                 decoration: InputDecoration(labelText: 'Auction End DateTime'),
               )
             ],

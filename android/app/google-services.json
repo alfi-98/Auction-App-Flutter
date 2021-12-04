@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "233899699828",
+    "project_id": "auction-app-flutter-764af",
+    "storage_bucket": "auction-app-flutter-764af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233899699828:android:3ecc983d5dedf57fdbeb21",
+        "android_client_info": {
+          "package_name": "co.alfi.auction_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233899699828-r1qug71if4gamb7v63ro6jpc0ic0mmf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6LPXNUZTvSYLq-1_3Wazli9uNSZ0-lvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233899699828-r1qug71if4gamb7v63ro6jpc0ic0mmf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

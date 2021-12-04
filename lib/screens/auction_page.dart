@@ -1,11 +1,6 @@
-import 'package:auction_app/screens/auctionGallery.dart';
-import 'package:auction_app/screens/create_item.dart';
-import 'package:auction_app/screens/dashBoard.dart';
 import 'package:auction_app/screens/home_page.dart';
-import 'package:auction_app/screens/itemCard.dart';
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
+import '../Constants/constants.dart';
 
 class AuctionPage extends StatefulWidget {
   static String id = 'auction_page';
@@ -94,7 +89,7 @@ class _AuctionPage extends State<AuctionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    //final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -223,7 +218,9 @@ class _AuctionPage extends State<AuctionPage> {
                             width: 40,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              openBid();
+                            },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 10),
@@ -256,12 +253,14 @@ class _AuctionPage extends State<AuctionPage> {
                         color: Colors.grey,
                       ),
                       Expanded(
-                        child: ListView.builder(
-                            itemCount: itemsData.length,
-                            itemBuilder: (context, index) {
-                              return itemsData[index];
-                            }),
-                      ),
+                        child: SingleChildScrollView(
+                          physics: ClampingScrollPhysics(),
+                          // itemCount: itemsData.length,
+                          // itemBuilder: (context, index) {
+                          //   return itemsData[index];
+                          // }),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -271,5 +270,27 @@ class _AuctionPage extends State<AuctionPage> {
         ],
       ),
     );
+  }
+
+  Future openBid() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text("Place a Bid"),
+            content: TextField(
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: 'biding amount',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: submit,
+                child: Text('Submit'),
+              ),
+            ],
+          ));
+
+  void submit() {
+    Navigator.of(context).pop();
   }
 }
