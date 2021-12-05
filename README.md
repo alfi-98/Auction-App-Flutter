@@ -41,6 +41,7 @@ I tried to make the UI as beautiful as possible
 
 #step6
 The apk file : 
+[auctionApp_apk.zip](https://github.com/alfi-98/Auction-App-Flutter/files/7656531/auctionApp_apk.zip)
 
 
 #step7
