@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:auction_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snack.dart';
@@ -15,13 +12,13 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
   late String name;
   late User loggedInUser;
   final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,6 +157,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                       await FirebaseAuth.instance.currentUser!
                           .updateProfile(displayName: name);
+
                       Navigator.pushNamed(context, HomePage.id);
 
                       print(email);

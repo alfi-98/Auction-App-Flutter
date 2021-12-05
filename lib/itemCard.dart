@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auction_app/post_details.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,8 +16,6 @@ class _ItemCardState extends State<ItemCard> {
   final itemSize = 100.0;
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
-  // CollectionReference _firebaseFirestore =
-  //     FirebaseFirestore.instance.collection("posts");
 
   late User loggedInUser;
 

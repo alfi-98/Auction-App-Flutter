@@ -1,4 +1,4 @@
-import 'package:auction_app/fetcPosts.dart';
+
 import 'package:auction_app/itemCard.dart';
 import 'package:auction_app/screens/create_item.dart';
 import 'package:auction_app/screens/dashBoard.dart';

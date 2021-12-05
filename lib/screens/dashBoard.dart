@@ -18,11 +18,6 @@ class _DashBoard extends State<DashBoard> {
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
 
-  List _posts = [];
-  List _bids = [];
-  List _completedBids = [];
-  List _totalValue = [];
-
   late int totalPosts = 0;
   late int totalBids = 0;
   late int bidsCompleted = 0;
@@ -93,10 +88,6 @@ class _DashBoard extends State<DashBoard> {
                           ]),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-
-                        // color: Colors.primaries[
-                        //         _random.nextInt(Colors.primaries.length)]
-                        //     [_random.nextInt(9) * 100],
                         color: Color(0xFFcc2200),
                       ),
                     ),
@@ -146,10 +137,6 @@ class _DashBoard extends State<DashBoard> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.blueAccent),
-
-                        // color: Colors.primaries[
-                        //         _random.nextInt(Colors.primaries.length)]
-                        //     [_random.nextInt(9) * 100],
                         color: Colors.black,
                       ),
                     ),
@@ -251,10 +238,6 @@ class _DashBoard extends State<DashBoard> {
                           ]),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-
-                        // color: Colors.primaries[
-                        //         _random.nextInt(Colors.primaries.length)]
-                        //     [_random.nextInt(9) * 100],
                         color: Color(0xFFa21146),
                       ),
                     ),

@@ -19,11 +19,8 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  //variable declerations
-  // CollectionReference _firebaseFirestore =
-  //     FirebaseFirestore.instance.collection("gallery_posts");
   final _firestore = FirebaseFirestore.instance;
-  // final _auth = FirebaseAuth.instance;
+
   final _auth = FirebaseAuth.instance;
   late User loggedInUser;
 
@@ -47,70 +44,6 @@ class _ProductDetailsState extends State<ProductDetails> {
     //getCurrentUser();
     controller = TextEditingController();
   }
-
-  // void getCurrentUser() async {
-  //   try {
-  //     final user = _auth.currentUser!;
-  //     loggedInUser = user;
-
-  //     print(loggedInUser.email);
-  //     // userName = loggedInUser.displayName!;
-  //     // userEmail = loggedInUser.email!;
-  //     _firestore.collection('posts').add({
-  //       'userName': loggedInUser.displayName,
-  //       'userEmail': loggedInUser.email,
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
-  // postBid() async {
-  //   final _currentPostID = _auth.currentUser!;
-
-  //   Builder(builder: (context) {
-  //     return StreamBuilder(
-  //         stream: _firestore
-  //             .collection("gallery_posts")
-  //             .where(FieldPath.documentId, isEqualTo: _currentPostID)
-  //             .snapshots(),
-  //         builder: (BuildContext context, AsyncSnapshot snapshot) {
-  //           DocumentSnapshot _documentSnapshot = snapshot.data!;
-  //           print('Doc Id');
-  //           print(_documentSnapshot.id);
-  //           print('Cur Id');
-  //           print(_currentPostID);
-  //           FirebaseFirestore.instance
-  //               .collection('gallery_posts')
-  //               .doc(_documentSnapshot.id)
-  //               .collection("bids")
-  //               .doc()
-  //               .set({
-  //             'userName': loggedInUser.displayName,
-  //             'bidAmount': bid,
-  //           });
-  //           final docId = _documentSnapshot.id;
-  //           print('Doc Id');
-  //           print(docId);
-  //           print('Cur Id');
-  //           print(_currentPostID);
-
-  //           return Card(
-  //             elevation: 5,
-  //             child: ListTile(
-  //               leading: Text(_documentSnapshot['userName']),
-  //               title: Text(
-  //                 "\$ ${_documentSnapshot['bidAmount']}",
-  //                 style:
-  //                     TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
-  //               ),
-  //             ),
-  //           );
-  //         });
-  //   });
-  // }
-
-//Main Body Section Starts
 
   @override
   Widget build(BuildContext context) {
@@ -408,21 +341,6 @@ class _ProductDetailsState extends State<ProductDetails> {
     Navigator.of(context).pop(controller.text);
   }
 
-//   postBid(String bid) async {
-//     final bid = this.bid;
-//     final _currentPostID = _auth.currentUser!;
-
-//     QuerySnapshot snapshot = await _firestore
-//         .collection('gallery_posts')
-//         .where(FieldPath.documentId, isEqualTo: _currentPostID)
-//         .get();
-//     if (snapshot.docs.isNotEmpty) {
-//       snapshot.docs.
-
-//     }
-//   }
-// }
-
   getData() async {
     final postId = widget._post['productID'];
     QuerySnapshot qn = await _firestore.collection('Bids').get();
@@ -440,32 +358,4 @@ class _ProductDetailsState extends State<ProductDetails> {
       }
     });
   }
-
-//   elseCall() async {
-//     final bidAmount = await openBid();
-//     if (bidAmount == null) {
-//       return;
-//     } else {
-//       setState(() => this.bid = bidAmount);
-
-//       final postId = widget._post['productID'];
-//       final user = _auth.currentUser!;
-//       loggedInUser = user;
-
-//       _firestore.collection('Bids').add({
-//         'bidAmount': bid,
-//         'postId': postId,
-//         'userName': loggedInUser.displayName,
-//       });
-//       Navigator.of(context).pop(controller.text);
-//       Get.snackbar(
-//         "Bid Placed",
-//         "You Have Successfully Placed a Bid",
-//         snackPosition: SnackPosition.TOP,
-//       );
-//       Navigator.pushReplacement(context,
-//           MaterialPageRoute(builder: (BuildContext context) => super.widget));
-//     }
-//   }
-
 }

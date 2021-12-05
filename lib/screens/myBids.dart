@@ -39,7 +39,7 @@ class _MyBids extends State<MyBids> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           SizedBox(
             height: 20,
           ),
@@ -52,35 +52,41 @@ class _MyBids extends State<MyBids> {
                 final String bidPlaced = _bidList[index]["bidAmount"];
 
                 return Card(
-                    color: Colors.tealAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    color: Colors.pink[900],
                     elevation: 5,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            width: 150,
-                            height: 55,
-                            child: Text(
-                              productName,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              width: 150,
+                              height: 55,
+                              child: Text(
+                                productName,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
                             ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            width: 100,
-                            height: 55,
-                            child: Text(
-                              "\$ $bidPlaced",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              width: 100,
+                              height: 55,
+                              child: Text(
+                                "\$ $bidPlaced",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ));
               })
