@@ -135,7 +135,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     color: Colors.green[500],
                     image: DecorationImage(
                       image: NetworkImage(
-                          'https://source.unsplash.com/random/800x600?house'),
+                          'https://cdn.dribbble.com/users/2187949/screenshots/15647837/media/bb07b496fa56b9a95f88020ef018919c.png?compress=1&resize=400x300'),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
@@ -266,6 +266,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 setState(() => this.bid = bidAmount);
 
                                 final postId = widget._post['productID'];
+                                final productName = widget._post['productName'];
                                 final user = _auth.currentUser!;
                                 loggedInUser = user;
 
@@ -273,6 +274,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   'bidAmount': bid,
                                   'postId': postId,
                                   'userName': loggedInUser.displayName,
+                                  'productName': productName
                                 });
 
                                 Get.snackbar(
@@ -343,7 +345,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                               children: [
                                                 Container(
                                                   padding: EdgeInsets.all(10),
-                                                  width: 70,
+                                                  width: 100,
                                                   height: 55,
                                                   child: Text(
                                                     name,
@@ -355,7 +357,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 ),
                                                 Container(
                                                   padding: EdgeInsets.all(10),
-                                                  width: 70,
+                                                  width: 100,
                                                   height: 55,
                                                   child: Text(
                                                     "\$ $bidPlaced",

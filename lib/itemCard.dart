@@ -63,17 +63,17 @@ class _ItemCardState extends State<ItemCard> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF0d324d),
-                            Color(0xFF7f5a83),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
+                        // gradient: LinearGradient(
+                        //   colors: [
+                        //     Color(0xFF0d324d),
+                        //     Color(0xFF7f5a83),
+                        //   ],
+                        //   begin: Alignment.topLeft,
+                        //   end: Alignment.bottomRight,
+                        // ),
                         //color: Colors.primaries[_random.nextInt(Colors.primaries.length)]
                         //  [_random.nextInt(9) * 100],
-                        color: Colors.black,
+                        color: Color(0xFF7a6c62),
                       ),
                       child: Column(
                         children: [
@@ -100,7 +100,7 @@ class _ItemCardState extends State<ItemCard> {
                               decoration: BoxDecoration(
                                 image: const DecorationImage(
                                   image: NetworkImage(
-                                      'https://source.unsplash.com/random/800x600?house'),
+                                      'https://cdn.dribbble.com/users/2187949/screenshots/15647837/media/bb07b496fa56b9a95f88020ef018919c.png?compress=1&resize=400x300'),
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius: BorderRadius.circular(10.0),
@@ -126,7 +126,8 @@ class _ItemCardState extends State<ItemCard> {
                                 borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(20),
                                     bottomLeft: Radius.circular(20)),
-                                color: Colors.white,
+                                //border: Border.all(color: Colors.grey),
+                                color: Color(0xFF2e2e2e),
                               ),
                               child: ButtonBar(
                                 children: [

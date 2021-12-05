@@ -157,6 +157,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       //User? user = newUser.user;
 
                       // ignore: deprecated_member_use
+
                       await FirebaseAuth.instance.currentUser!
                           .updateProfile(displayName: name);
                       Navigator.pushNamed(context, HomePage.id);
