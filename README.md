@@ -1,5 +1,12 @@
 # auction_app
 
+apk : [auctionApp_apk.zip](https://github.com/alfi-98/Auction-App-Flutter/files/7656531/auctionApp_apk.zip)
+
+![p1](https://user-images.githubusercontent.com/66726759/144759895-ece27e21-fa6e-4da8-92f1-797015640230.png)
+![p2](https://user-images.githubusercontent.com/66726759/144759898-cc263719-68d4-48d8-a3f9-0de92e528465.png)
+![p3](https://user-images.githubusercontent.com/66726759/144759903-528329b8-1164-46dd-890f-2203e28170f5.png)
+![p5](https://user-images.githubusercontent.com/66726759/144759909-dbf494c7-fb38-462e-8ec5-8702b8061765.png)
+
 #Step 1
 
 Packages: 
