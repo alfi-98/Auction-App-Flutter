@@ -1,11 +1,12 @@
 import 'dart:math';
 
-import 'package:auction_app/Constants/firebase_constants.dart';
-import 'package:auction_app/Controllers/auth_controller.dart';
 import 'package:auction_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snack.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -19,6 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   late String email;
   late String password;
   late String name;
+  late User loggedInUser;
   final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -141,16 +143,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () async {
+                    if (password.length < 6) {
+                      Get.snackbar(
+                        "Password Short",
+                        "Password Has to be more than 6 characters",
+                        snackPosition: SnackPosition.TOP,
+                      );
+                    }
                     try {
                       final newUser =
                           await _auth.createUserWithEmailAndPassword(
                               email: email, password: password);
-                      User? user = newUser.user;
+                      //User? user = newUser.user;
 
-                      if (newUser != null) {
-                        user!.updateDisplayName(name);
-                        Navigator.pushNamed(context, HomePage.id);
-                      }
+                      // ignore: deprecated_member_use
+                      await FirebaseAuth.instance.currentUser!
+                          .updateProfile(displayName: name);
+                      Navigator.pushNamed(context, HomePage.id);
 
                       print(email);
                       print(password);

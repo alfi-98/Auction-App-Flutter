@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class AuctionGallery extends StatefulWidget {
+  static String id = 'auction_gallery';
   @override
   _AuctionGallery createState() => _AuctionGallery();
 }

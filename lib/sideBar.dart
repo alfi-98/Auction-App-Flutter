@@ -34,9 +34,11 @@ class _SideBarState extends State<SideBar> {
       loggedInUser = user;
 
       print(loggedInUser.email);
-      // userName = loggedInUser.displayName!;
+      print(user.displayName);
+      //final userName = loggedInUser.displayName!;
       // userEmail = loggedInUser.email!;
-      _firestore.collection('userInfo').add({
+      print(loggedInUser.displayName);
+      _firestore.collection('user').add({
         'userName': loggedInUser.displayName,
         'userEmail': loggedInUser.email,
       });

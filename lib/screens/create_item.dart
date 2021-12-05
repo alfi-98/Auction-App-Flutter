@@ -33,12 +33,22 @@ class _CreateItemState extends State<CreateItem> {
     try {
       final user = _auth.currentUser!;
       loggedInUser = user;
-      _firestore.collection('posts').add({
+
+      CollectionReference _collectionRef =
+          FirebaseFirestore.instance.collection('user-posts');
+      _collectionRef.doc(user.email).collection('posts').doc().set({
         'productName': productName,
         'productDescription': productDes,
         'productPhoto': productPhoto,
         'minBid': minBidPrice,
-        'userName': loggedInUser.displayName
+        'userName': loggedInUser.displayName,
+      });
+
+      _firestore.collection('gallery_posts').add({
+        'productName': productName,
+        'productDescription': productDes,
+        'productPhoto': productPhoto,
+        'minBid': minBidPrice,
       });
     } catch (e) {
       print(e);

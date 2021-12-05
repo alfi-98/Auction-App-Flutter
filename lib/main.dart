@@ -1,11 +1,12 @@
 import 'package:auction_app/Controllers/auth_controller.dart';
-import 'package:auction_app/screens/auction_page.dart';
+import 'package:auction_app/screens/auctionGallery.dart';
 import 'package:auction_app/screens/create_item.dart';
 import 'package:auction_app/screens/dashBoard.dart';
 import 'package:auction_app/screens/home_page.dart';
 import 'package:auction_app/screens/myBids.dart';
 import 'package:auction_app/screens/my_posts.dart';
 import 'package:auction_app/screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,10 +14,10 @@ import 'Constants/firebase_constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await firebaseInitialization.then((value) {
-    Get.put(AuthController());
-  });
-  runApp(MyApp());
+  await Firebase.initializeApp();
+  runApp(
+    MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         MyPosts.id: (context) => MyPosts(),
         DashBoard.id: (context) => DashBoard(),
         MyBids.id: (context) => MyBids(),
-        AuctionPage.id: (context) => AuctionPage(),
+        //AuctionPage.id: (context) => AuctionPage(),
+        AuctionGallery.id: (context) => AuctionGallery(),
       },
     );
   }
